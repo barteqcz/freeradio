@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Rádio 107 FM | První v Brně s nejnovějšími hity!</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="img/logo.png">
+</head>
+<body>
+    <header>
+        <a href="#" onclick="hamburgerMenuHideOnly()"><img src="img/logo.png" width="100px" height="100px"></a>
+        <nav class="menu-desktop">
+            <a href="#team"><b>Team</b></a>
+            <a href="#contact"><b>Kontakt</b></a>
+            <a href="podcasty.html"><b>Podcasty</b></a>
+            <a href="top107.html"><b>TOP 107</b></a>
+        </nav>
+        <nav class="menu-mobile"><i class="fa fa-bars menu-mobile-icon" onclick="hamburgerMenu()"></i></nav>
+    </header>
+    <main>
+        <div id="myLinks" onclick="hamburgerMenu()">
+            <a href="#team">Team</a>
+            <a href="#contact">Kontakt</a>
+            <a href="podcasty.html">Podcasty</a>
+            <a href="top107.html">TOP 107</a>
+        </div>
+        <section id="main">
+            <div class="left">
+                <div class="box-play"><a href="https://listen.play.cz/player?shortcut=freeradio" target="_blank"><i class="fa-solid fa-circle-play"></i><h2>Poslouchej nás online</h2></a></div>
+                <div id="program" class="program">
+                    <h2 class="text-align-center">Pořady</h2>
+                    <select id="program-days" class="dropdown" onchange="updateDay()"><option value="po">Ponděli</option><option value="ut">Úterý</option><option value="st">Středa</option><option value="ct">Čtvrtek</option><option value="pa">Pátek</option><option value="so">Sobota</option><option value="ne">Neděle</option></select>
+                    <div class="day"></div>
+                </div>
+            </div>
+            <div class="right">
+                <div id="podcasts" class="podcasts">
+                    <h2 class="text-align-center">Podcasty</h2>
+                    <a href="podcasty.html"><p>Zobrazit&nbsp;&nbsp;<i class="fa-solid fa-arrow-right"></i></p></a>
+                </div>
+                <div id="top107" class="top107">
+                    <h2 class="text-align-center">TOP 107</h2>
+                    <a href="top107.html"><p>Zobrazit&nbsp;&nbsp;<i class="fa-solid fa-arrow-right"></i></p></a>
+                </div>
+            </div>
+        </section>
+        <section id="main2">
+            <div id="team" class="team">
+                <h2 class="text-align-center">Team Free Rádia</h2>
+                <div class="grid-container">
+                    <div><img src="img/team-roman-kolodej.jpg"><p>Roman Koloděj</p></div>
+                    <div><img src="img/team-petra-hlavkova.jpg"><p>Petra Hlávková</p></div>
+                    <div><img src="img/team-kristyna-kolibova.jpg"><p>Kristýna Kolibová</p></div>
+                    <div><img src="img/team-lukas-bartl.jpg"><p>Lukáš Bartl</p></div>
+                    <div><img src="img/team-patrick-netik.jpg"><p>Patrick Netík</p></div>
+                    <div><img src="img/team-misa-rotterova.jpg"><p>Míša Rotterová</p></div>
+                    <div><img src="img/team-mekki-martin.jpg"><p>Mekki Martin</p></div>
+                </div>
+            </div>
+            <div id="contact" class="contact">
+                <h2 class="text-align-center">Kontakt</h2>
+                <div class="helper-container">
+                    <div class="left">
+                        <img src="img/mapa.png">
+                    </div>
+                    <div class="right">
+                        <p>Studio tel.: +420 790 107 107</p>
+                        <p>Studio mail: <a class="email" href="mailto:studio@freeradio.cz">studio@freeradio.cz</a></p>
+                        <p class="bottom">Freečko najdete na adrese Gorkého 45, pod jednou střechou společně s Krokodýlem.</p>
+                    </div>
+                </div>
+            </div>
+    </main>
+    <footer>
+        <a href="https://www.facebook.com/freeradio/" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+        <a href="https://www.instagram.com/freeradio.cz/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+    </footer>
+</body>
+</html>
