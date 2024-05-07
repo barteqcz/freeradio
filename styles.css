@@ -191,7 +191,7 @@ a {
     scroll-margin-top: 180px;
 }
 
-.podcasts {
+.partners {
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -224,6 +224,11 @@ a {
 
 .grid-container img {
     border-radius: 50%;
+}
+
+.flex-container {
+    display: flex;
+    justify-content: center;
 }
 
 #main2 > * {
