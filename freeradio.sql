@@ -1,0 +1,196 @@
+SET GLOBAL event_scheduler = ON;
+
+DROP DATABASE IF EXISTS freeradio;
+CREATE DATABASE freeradio;
+
+USE freeradio;
+
+CREATE TABLE top107 (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    artist VARCHAR(255),
+    title VARCHAR(255),
+    votes INT UNSIGNED DEFAULT 0
+);
+
+CREATE TABLE admin_login (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(255) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE program_schedule (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    day INT,
+    time_start TIME,
+    time_end TIME,
+    program_name VARCHAR(255)
+);
+
+CREATE TABLE ip_votes (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    ip_address VARCHAR(255) NOT NULL,
+    song_id INT NOT NULL,
+    vote_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE EVENT IF NOT EXISTS reset_ip_votes ON SCHEDULE EVERY 1 DAY STARTS '2024-01-01 00:00:00' DO DELETE FROM ip_votes;
+
+INSERT INTO program_schedule (day, time_start, time_end, program_name) VALUES
+('1', '07:00', '09:00', 'Ranní Šoustancem Free Rádia'),
+('1', '09:00', '10:00', 'Krimi zprávy Free Rádia'),
+('1', '10:00', '11:00', 'Tajemný film Free Rádia'),
+('1', '11:00', '12:00', 'Celebrity Show Free Rádia'),
+('1', '12:00', '14:00', 'Žijeme Brnem'),
+('1', '14:00', '17:00', 'Odpolední FreePárty'),
+('1', '17:00', '20:00', 'Freebox Free Rádia'),
+
+('2', '07:00', '09:00', 'Ranní Šoustancem Free Rádia'),
+('2', '09:00', '10:00', 'Krimi zprávy Free Rádia'),
+('2', '10:00', '11:00', 'Tajemný film Free Rádia'),
+('2', '11:00', '12:00', 'Celebrity Show Free Rádia'),
+('2', '12:00', '14:00', 'Žijeme Brnem'),
+('2', '14:00', '17:00', 'Odpolední FreePárty'),
+('2', '17:00', '20:00', 'Freebox Free Rádia'),
+
+('3', '07:00', '09:00', 'Ranní Šoustancem Free Rádia'),
+('3', '09:00', '10:00', 'Krimi zprávy Free Rádia'),
+('3', '10:00', '11:00', 'Tajemný film Free Rádia'),
+('3', '11:00', '12:00', 'Celebrity Show Free Rádia'),
+('3', '12:00', '14:00', 'Žijeme Brnem'),
+('3', '14:00', '17:00', 'Odpolední FreePárty'),
+('3', '17:00', '20:00', 'Freebox Free Rádia'),
+
+('4', '07:00', '09:00', 'Ranní Šoustancem Free Rádia'),
+('4', '09:00', '10:00', 'Krimi zprávy Free Rádia'),
+('4', '10:00', '11:00', 'Tajemný film Free Rádia'),
+('4', '11:00', '12:00', 'Celebrity Show Free Rádia'),
+('4', '12:00', '14:00', 'Žijeme Brnem'),
+('4', '14:00', '17:00', 'Odpolední FreePárty'),
+('4', '17:00', '20:00', 'Freebox Free Rádia'),
+
+('5', '07:00', '09:00', 'Ranní Šoustancem Free Rádia'),
+('5', '09:00', '10:00', 'Krimi zprávy Free Rádia'),
+('5', '10:00', '11:00', 'Tajemný film Free Rádia'),
+('5', '11:00', '12:00', 'Celebrity Show Free Rádia'),
+('5', '12:00', '14:00', 'Žijeme Brnem'),
+('5', '14:00', '17:00', 'Odpolední FreePárty'),
+('5', '17:00', '20:00', 'Freebox Free Rádia'),
+
+('6', '09:00', '14:00', 'Ranní Šoustancem Free Rádia'),
+('6', '14:00', '19:00', 'Krimi zprávy Free Rádia'),
+
+('7', '09:00', '13:00', 'Víkendovky Free Rádia'),
+('7', '13:00', '17:00', 'Hitparáda Stosedmička Freečka [repríza]'),
+('7', '17:00', '20:00', 'Nedělní Retroparty Free Rádia'),
+('7', '20:00', '22:00', 'House 4 U');
+
+INSERT INTO top107 (artist, title) VALUES
+('Italobrothers', 'Manana'),
+('Deorro', 'Me caes muy bien'),
+('Bebe Rexha & Nathan Dawe', 'Heart still beating'),
+('Armin Van Buuren', 'Lose this feeling (maddix remix)'),
+('Becky Hill', 'Multiply'),
+('Alok & A7s', 'Monster'),
+('Calvin Harris & Ellie Goulding', 'Free'),
+('Swedish House Mafia & Niki', 'Lioness'),
+('Ella Henderson feat. Rudimental', 'Alibi'),
+('Verona', 'Na mě nečekej'),
+('Benny Benassi & Nu-La', 'Give me your love'),
+('Twocolors feat. Roe Byrne', 'Stereo'),
+('Robin Schulz, Topic, Oaks', 'One by one'),
+('PNAU feat. Empire of the Sun', 'AeioU'),
+('The Kolors', 'Karma'),
+('Becky Hill & Sonny Fodera', 'Never be alone'),
+('Lunax', 'You owe me'),
+('Cyril', 'Sound of silence'),
+('Mike Candys', 'Si te vas'),
+('Switch Disco', 'I found you'),
+('Nicky Romero feat. Chelcee Grimes', 'Sensation'),
+('Benny Benassi & Oaks', 'Never been yours'),
+('Alan Walker & Ina Wroldsen', 'Barcelona'),
+('Gabry Ponte & Vicco', 'Viento'),
+('Becky Hill', 'Outside of love'),
+('The Kolors', 'Un ragazzo una ragazza'),
+('Tiscore & 89ers', 'Together'),
+('The Hitmen', 'Monsters in my bed'),
+('Cyril', 'Stumblin’ in'),
+('Dua Lipa', 'Training season'),
+('Felix Jaehn feat. Sophie Ellis-Bextor', 'Ready for your love'),
+('Pam Rabbit', 'Space'),
+('Ella Henderson & Switch Disco', 'Under the sun'),
+('Picco vs. Jens O.', 'Heroes of the night'),
+('Lola Indigo', 'La reina'),
+('Oliver Heldens feat. Roro', 'Shine'),
+('Tiesto x Gabry Ponte', 'Mockingbird'),
+('89ers & Rimini Rockaz', 'Kingston town'),
+('Eminem', 'Houdini'),
+('Klaas', 'Neverending story'),
+('Rocco, Perfect Pitch', 'Echo'),
+('Gigi Dagostino feat. Boostedkids', 'Shadows of the night'),
+('Gareth Emery feat. Annabel', 'House in the streetlight'),
+('Alan Walker & Bludnymph', 'Beautiful nightmare'),
+('Heidi Klum', 'Sunglasses at night'),
+('Sofi Tukker', 'Throw some ass'),
+('Minelli', 'Bug a boo'),
+('Jaxomy & Raffaella Carra', 'Pedro'),
+('Armin Van Buuren & Hardwell', 'Follow the light'),
+('Dua Lipa', 'Want to'),
+('Joel Corry', 'Hey DJ'),
+('Oliver Heldens & David Guetta', 'Chills (feel my love)'),
+('Dimitri Vegas & Vin Diesel', 'Don’t stop the music'),
+('Neptunica, Jasper Forks', 'River flows in you'),
+('Marcus & Martinus', 'Unforgettable'),
+('Karol G & Tiesto', 'Contigo'),
+('Bebe Rexha feat. Nicki Minaj', 'No broken hearts'),
+('Purple Disco Machine & Chromeo', 'Heartbreaker'),
+('Regard', 'Call on me'),
+('Bingo Players & Disco Fries', 'Our house'),
+('Bob Sinclar & Sofiya Nzau', 'Digane'),
+('Steve Modana', 'Eloui'),
+('Ofenbach feat. Salem Ilese', 'Feelings dont lie'),
+('Perrie', 'You go your way'),
+('W&W x Vinai', 'Axel F (take it to the floor)'),
+('Clean Bandit & David Guetta', 'Cry baby'),
+('Kshmr', 'Take me home, country roads'),
+('Ava Max', 'Blood, sweat & tears'),
+('Edward Maya', 'Just like a song'),
+('The Chainsmokers & Kim Petras', 'Don’t lie'),
+('Inna', 'Get the feeling'),
+('Purple Disco Machine, Benjamin Ingrosso', 'Honey boy'),
+('Sophie and the Giants', 'Shut up and dance'),
+('Blanka', 'Asereje'),
+('Sick Individuals', 'Who do you love'),
+('Imanbek & Younotus', 'Heal my heart'),
+('Burak Yeter feat. Parkah & Durzo', 'Say my name'),
+('Jonas Blue & Eyelar', '100 lives'),
+('Matoma', 'Let me'),
+('Ace of Base', 'Wish you were mine'),
+('Nelly Furtado', 'Honesty'),
+('Prezioso & Blasterjaxx', 'Shady'),
+('Kylie Minogue', 'Lights camera action'),
+('Vize', 'Heaven'),
+('Vinai & Tungevaag', 'Whenever you are'),
+('Meduza feat. OneRepublic & Leony', 'Fire'),
+('The Black Eyed Peas, El Alfa & Becky G', 'Tonight'),
+('Sigala feat. Trevor Daniel', 'It is a feeling'),
+('Paris Hilton feat. Megan Thee Stallion', 'Bba'),
+('Galantis feat. Rosa Linn', 'One cry'),
+('Charli XCX feat. Billie Eilish', 'Guess'),
+('Katy Perry', 'Lifetimes'),
+('Nathan Evans', 'Flowers in the water'),
+('Cascada', 'Call me'),
+('Marshmello & Kane Brown', 'Miles on it'),
+('Don Diablo & Sandro Cavazza', 'Young again'),
+('Meghan Trainor', 'Criminals'),
+('The Weeknd', 'Dancing in the flames'),
+('Sabrina Carpenter', 'Taste'),
+('Martin Garrix & Carolina Liar', 'Smile'),
+('James Carter & Leony, Sam Fischer', 'Summer of love'),
+('Afrojack & Pitbull & Ne-Yo', '2 the moon'),
+('Kesha', 'Joyride'),
+('Flo Rida & Alan Walker', 'When I grow up'),
+('Verano', 'In my brain'),
+('Jennie', 'Mantra'),
+('R.I.O. & Athenica', 'Your body');
+
+INSERT INTO admin_login (username, password) VALUES ('Admin', '$2y$10$rG.YsBjPzbA2NOLqxdnxlen31tk4iHM/jPwX/1nZlKFNcONgF1p5i');
